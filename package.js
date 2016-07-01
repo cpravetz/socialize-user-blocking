@@ -7,6 +7,9 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.3');
-  api.use('ecmascript');
+  api.use([
+      'ecmascript'
+      'socialize:user-model@1.0.0'
+  ]);
   api.mainModule('commmon/common.js');
 });
