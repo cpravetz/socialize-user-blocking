@@ -1,4 +1,5 @@
 import { BaseModel } from 'meteor/socialize:base-model';
+import SimpleSchema from 'simpl-schema';
 
 export const BlocksCollection = new Mongo.Collection('blocks');
 
