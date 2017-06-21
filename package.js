@@ -11,5 +11,5 @@ Package.onUse(function(api) {
       'ecmascript',
       'socialize:user-model@1.0.0'
   ]);
-  api.mainModule('commmon/common.js');
+  api.mainModule('common/common.js');
 });
