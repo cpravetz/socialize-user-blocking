@@ -1,5 +1,5 @@
 import { BlocksCollection } from '../common/block-model';
-import { User } from 'meteor/socialize-user-model';
+import { User } from 'meteor/socialize:user-model';
 
 //array to store functions that run when a user gets blocked
 let onHooks = [];
