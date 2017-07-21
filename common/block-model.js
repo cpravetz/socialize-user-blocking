@@ -1,13 +1,12 @@
+/* eslint-disable import/no-unresolved */
 import { BaseModel } from 'meteor/socialize:base-model';
 import SimpleSchema from 'simpl-schema';
 import { Mongo } from 'meteor/mongo';
+/* eslint-enable import/no-unresolved */
 
 export const BlocksCollection = new Mongo.Collection('blocks');
 
 export class Block extends BaseModel {
-    constructor(document) {
-        super(document);
-    }
     isDuplicate() {
         return !!BlocksCollection.findOne({ userId: this.userId, blockedUserId: this.blockedUserId });
     }
@@ -24,6 +23,7 @@ Block.appendSchema({
             if (this.isInsert) {
                 return this.userId;
             }
+            return undefined;
         },
         index: 1,
         denyUpdate: true,
@@ -40,6 +40,7 @@ Block.appendSchema({
             if (this.isInsert) {
                 return new Date();
             }
+            return undefined;
         },
         index: -1,
         denyUpdate: true,
