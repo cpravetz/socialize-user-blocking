@@ -4,7 +4,7 @@ import SimpleSchema from 'simpl-schema';
 import { Mongo } from 'meteor/mongo';
 /* eslint-enable import/no-unresolved */
 
-export const BlocksCollection = new Mongo.Collection('blocks');
+export const BlocksCollection = new Mongo.Collection('socialize:blocks');
 
 export class Block extends BaseModel {
     isDuplicate() {
