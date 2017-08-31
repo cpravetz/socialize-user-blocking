@@ -24,9 +24,7 @@ User.methods({
     /**
      * Check if the user blocks another by running checks which
      * have been registered with User.registerBlockingHook()
-     * @method blocksUser
-     * @param   {Object}  [user=Meteor.user()] The user instance to check. Defaults to
-     *                                       Meteor.user()
+     * @param   {Object}  [user=Meteor.user()] The user instance to check
      * @returns {Boolean} Whether or not the user is blocked
      */
     blocksUser(user = Meteor.user()) {
@@ -54,7 +52,6 @@ User.methods({
 
     /**
      * Block a user by their _id
-     * @method block
      */
     block() {
         new Block({ blockedUserId: this._id }).save();
@@ -62,7 +59,6 @@ User.methods({
 
     /**
      * Unblock a user that was previously blocked by their _id
-     * @method unblock
      */
     unblock() {
         // find then remove because you must remove records by _id on client
@@ -73,41 +69,39 @@ User.methods({
 
     /**
      * Get a list of userIds who are blocking the user
-     * @method blockedByUsers
+     * @param  {Object} [options={}] Mongo style options object which is passed to Collection.find()
+     * @returns {Array} Array of userIds for users that block this user
      */
-    blockedByUserIds(limit, skip) {
-        const options = { limit, skip };
+    blockedByUserIds(options = {}) {
         return BlocksCollection.find({ blockedUserId: this._id }, options).map(block => block.userId);
     },
 
     /**
      * Get a cursor of User instances who are blocking the user
-     * @param   {Number}       limit The number of records to limit the result set to
-     * @param   {Number}       skip  The number of records to skip
+     * @param  {Object} [options={}] Mongo style options object which is passed to Collection.find()
      * @returns {Mongo.Cursor} A cursor which when iterated over returns User instances
      */
-    blockedByUsers(limit, skip) {
-        const ids = this.blockedByUserIds(limit, skip);
+    blockedByUsers(options = {}) {
+        const ids = this.blockedByUserIds(options);
         return Meteor.users.find({ _id: { $in: ids } });
     },
 
     /**
      * Get a list of userIds that the user blocks
-     * @method blockedUsers
+     * @param  {Object} [options={}] Mongo style options object which is passed to Collection.find()
+     * @returns {Array} Array of userIds for users that this user blocks
      */
-    blockedUserIds(limit, skip) {
-        const options = { limit, skip };
+    blockedUserIds(options = {}) {
         return BlocksCollection.find({ userId: this._id }, options).map(block => block.blockedUserId);
     },
 
     /**
      * Get a cursor of User instances that the user is blocking
-     * @param   {Number}       limit The number of records to limit the result set to
-     * @param   {Number}       skip  The number of records to skip
+     * @param  {Object} [options={}] Mongo style options object which is passed to Collection.find()
      * @returns {Mongo.Cursor} A cursor which when iterated over returns User instances
      */
-    blockedUsers(limit, skip) {
-        const ids = this.blockedUserIds(limit, skip);
+    blockedUsers(options = {}) {
+        const ids = this.blockedUserIds(options);
         return Meteor.users.find({ _id: { $in: ids } });
     },
 

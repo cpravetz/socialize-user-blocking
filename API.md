@@ -32,7 +32,7 @@ Template.userProfile.events({
 {{/if}}
 ```
 
-**blockedByUserIds(limit, skip)** - Get array of userId's for users that currently block the user.
+**blockedByUserIds(options)** - Get array of userId's for users that currently block the user. Signature of `options` param is the same as you would pass to `Collection.find()`.
 
 ```javascript
 var ids = currentUser.blockedByUserIds();
@@ -41,13 +41,13 @@ var ids = currentUser.blockedByUserIds();
 return Meteor.users.find({_id:{$nin:ids}});
 ```
 
-**blockedByUsers(limit, skip)** - Get a cursor of users that currently block the user.
+**blockedByUsers(options)** - Get a cursor of users that currently block the user. Signature of `options` param is the same as you would pass to `Collection.find()`.
 
 ```javascript
 var blockedByUsers = currentUser.blockedByUsers()
 ```
 
-**blockedUserIds(limit, skip)** - Get an array of userIds for users that are blocked by the the user.
+**blockedUserIds(options)** - Get an array of userIds for users that are blocked by the the user. Signature of `options` param is the same as you would pass to `Collection.find()`.
 
 ```javascript
 var ids = currentUser.blockedUserIds();
@@ -56,7 +56,7 @@ var ids = currentUser.blockedUserIds();
 return Meteor.users.find({_id:{$nin:ids}});
 ```
 
-**blockedUsers(limit, skip)** - Get a cursor of users that are blocked by the user
+**blockedUsers(options)** - Get a cursor of users that are blocked by the user. Signature of `options` param is the same as you would pass to `Collection.find()`.
 
 ```html
 {{#each currentUser.blockedUsers}}
