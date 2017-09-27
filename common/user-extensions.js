@@ -54,7 +54,12 @@ User.methods({
      * Block a user by their _id
      */
     block() {
-        new Block({ blockedUserId: this._id }).save();
+        new Block({ blockedUserId: this._id }).save({
+            channels: [
+                `blocked::${Meteor.userId()}`,
+                `blockedBy::${this._id}`,
+            ],
+        });
     },
 
     /**
@@ -63,8 +68,38 @@ User.methods({
     unblock() {
         // find then remove because you must remove records by _id on client
         const block = BlocksCollection.findOne({ userId: Meteor.userId(), blockedUserId: this._id });
+        block && block.remove({
+            channels: [
+                `blocks::${Meteor.userId()}`,
+                `blockedBys::${this._id}`,
+            ],
+        });
+    },
 
-        block && block.remove();
+    /**
+     * Get a cursor of Block instances for users that this user blocks
+     * @param  {Object} [options={}] Mongo style options object which is passed to Collection.find()
+     * @returns {Mongo.Cursor} A cursor which when iterated over returns Block instances
+     */
+    blocks(options = {}) {
+        const newOptions = {
+            ...options,
+            channel: `blocks::${Meteor.userId()}`,
+        };
+        return BlocksCollection.find({ blockedUserId: this._id }, newOptions);
+    },
+
+    /**
+     * Get a cursor of Block instances for other users that block this user.
+     * @param  {Object} [options={}] Mongo style options object which is passed to Collection.find()
+     * @returns {Mongo.Cursor} A cursor which when iterated over returns Block instances
+     */
+    blockedBys(options = {}) {
+        const newOptions = {
+            ...options,
+            channel: `blockedBys::${this._id}`,
+        };
+        return BlocksCollection.find({ userId: this._id }, newOptions);
     },
 
     /**
@@ -73,7 +108,7 @@ User.methods({
      * @returns {Array} Array of userIds for users that block this user
      */
     blockedByUserIds(options = {}) {
-        return BlocksCollection.find({ blockedUserId: this._id }, options).map(block => block.userId);
+        return this.blockedBys(options).map(block => block.userId);
     },
 
     /**
@@ -92,7 +127,7 @@ User.methods({
      * @returns {Array} Array of userIds for users that this user blocks
      */
     blockedUserIds(options = {}) {
-        return BlocksCollection.find({ userId: this._id }, options).map(block => block.blockedUserId);
+        return this.blocks(options).map(block => block.blockedUserId);
     },
 
     /**
