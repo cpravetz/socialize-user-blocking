@@ -23,7 +23,21 @@ Template.userProfile.events({
     }
 });
 ```
-**blocksUser(user)** - Check if one user blocks another. Check include by \_id by default. Other blocking checks can be registered using `User.registerBlockingHook`.
+**blocks** - Get instances of Blocks for users that this user blocks.
+
+```javascript
+Meter.user().blocks().fetch();
+```
+**blockedBys** - Get instances of Blocks for other users that block this user.
+
+```javascript
+Meteor.user().blockedBys.fetch();
+```
+
+```javascript
+Meter.user().blocks().fetch();
+```
+**blocksUser(user)** - Check if one user blocks another. Check includes by \_id by default. Other blocking checks can be registered using `User.registerBlockingHook`.
 
 ```html
 <!-- assuming data context is user instance -->
