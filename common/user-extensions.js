@@ -55,7 +55,7 @@ User.methods({
      */
     block() {
         new Block({ blockedUserId: this._id }).save({
-            channels: [
+            namespaces: [
                 `blocked::${Meteor.userId()}`,
                 `blockedBy::${this._id}`,
             ],
@@ -69,9 +69,9 @@ User.methods({
         // find then remove because you must remove records by _id on client
         const block = BlocksCollection.findOne({ userId: Meteor.userId(), blockedUserId: this._id });
         block && block.remove({
-            channels: [
-                `blocks::${Meteor.userId()}`,
-                `blockedBys::${this._id}`,
+            namespaces: [
+                `blocked::${Meteor.userId()}`,
+                `blockedBy::${this._id}`,
             ],
         });
     },
@@ -84,7 +84,7 @@ User.methods({
     blocks(options = {}) {
         const newOptions = {
             ...options,
-            channel: `blocks::${Meteor.userId()}`,
+            namespace: `blocked::${Meteor.userId()}`,
         };
         return BlocksCollection.find({ blockedUserId: this._id }, newOptions);
     },
@@ -97,7 +97,7 @@ User.methods({
     blockedBys(options = {}) {
         const newOptions = {
             ...options,
-            channel: `blockedBys::${this._id}`,
+            namespace: `blockedBy::${this._id}`,
         };
         return BlocksCollection.find({ userId: this._id }, newOptions);
     },
