@@ -1,5 +1,6 @@
 /* eslint-disable import/no-unresolved */
 import { BaseModel } from 'meteor/socialize:base-model';
+import { ServerTime } from 'meteor/socialize:server-time';
 import SimpleSchema from 'simpl-schema';
 import { Mongo } from 'meteor/mongo';
 /* eslint-enable import/no-unresolved */
@@ -38,7 +39,7 @@ Block.appendSchema({
         type: Date,
         autoValue() {
             if (this.isInsert) {
-                return new Date();
+                return ServerTime.date();
             }
             return undefined;
         },
