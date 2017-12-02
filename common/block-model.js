@@ -35,7 +35,7 @@ Block.appendSchema({
         index: 1,
         denyUpdate: true,
     },
-    createAt: {
+    createdAt: {
         type: Date,
         autoValue() {
             if (this.isInsert) {
