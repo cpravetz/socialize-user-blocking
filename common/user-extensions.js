@@ -54,12 +54,7 @@ User.methods({
      * Block a user by their _id
      */
     block() {
-        new Block({ blockedUserId: this._id }).save({
-            namespaces: [
-                `blocked::${Meteor.userId()}`,
-                `blockedBy::${this._id}`,
-            ],
-        });
+        new Block({ blockedUserId: this._id }).save();
     },
 
     /**
@@ -68,12 +63,7 @@ User.methods({
     unblock() {
         // find then remove because you must remove records by _id on client
         const block = BlocksCollection.findOne({ userId: Meteor.userId(), blockedUserId: this._id });
-        block && block.remove({
-            namespaces: [
-                `blocked::${Meteor.userId()}`,
-                `blockedBy::${this._id}`,
-            ],
-        });
+        block && block.remove();
     },
 
     /**
@@ -82,11 +72,7 @@ User.methods({
      * @returns {Mongo.Cursor} A cursor which when iterated over returns Block instances
      */
     blocks(options = {}) {
-        const newOptions = {
-            ...options,
-            namespace: `blocked::${Meteor.userId()}`,
-        };
-        return BlocksCollection.find({ blockedUserId: this._id }, newOptions);
+        return BlocksCollection.find({ blockedUserId: this._id }, options);
     },
 
     /**
@@ -95,11 +81,7 @@ User.methods({
      * @returns {Mongo.Cursor} A cursor which when iterated over returns Block instances
      */
     blockedBys(options = {}) {
-        const newOptions = {
-            ...options,
-            namespace: `blockedBy::${this._id}`,
-        };
-        return BlocksCollection.find({ userId: this._id }, newOptions);
+        return BlocksCollection.find({ userId: this._id }, options);
     },
 
     /**
