@@ -90,3 +90,7 @@ User.registerBlockingHook(function(user){
     }
 });
 ```
+
+## Publications ##
+
+**socialize.blockedUsers** - Publishes blocked user records for the users that the current user blocks.
