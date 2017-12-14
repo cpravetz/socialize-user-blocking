@@ -42,12 +42,12 @@ User.methods({
     },
 
     /**
-     * Check if user blocks another by thier _id
+     * Check if user blocks another by their _id
      * @param   {Object}  user The User instance to check against
      * @returns {Boolean} Whether the user is blocked or not
      */
-    blocksUserById(user) {
-        return !!BlocksCollection.findOne({ userId: this._id, blockedUserId: user._id });
+    blocksUserById(userId) {
+        return !!BlocksCollection.findOne({ userId: this._id, blockedUserId: userId });
     },
 
     /**
@@ -125,6 +125,6 @@ User.methods({
 });
 
 // Register a hook to check if the user block another by _id field
-User.registerBlockingHook(function blocksUserById(user) {
-    return this.blocksUserById(user);
+User.registerBlockingHook(function blocksUserById(userId) {
+    return this.blocksUserById(userId);
 });
