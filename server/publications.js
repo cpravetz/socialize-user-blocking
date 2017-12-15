@@ -25,7 +25,7 @@ publishComposite('socialize.blockedUsers', function publishBlockedUsers(options 
         children: [
             {
                 find(block) {
-                    return Meteor.users.find({ _id: block.blockedUserId });
+                    return Meteor.users.find({ _id: block.blockedUserId }, { fields: User.fieldsToPublish });
                 },
             },
         ],
