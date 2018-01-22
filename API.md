@@ -31,7 +31,7 @@ Meter.user().blocks().fetch();
 **blockedBys** - Get instances of Blocks for other users that block this user.
 
 ```javascript
-Meteor.user().blockedBys.fetch();
+Meteor.user().blockedBys().fetch();
 ```
 
 ```javascript
