@@ -93,4 +93,8 @@ User.registerBlockingHook(function(user){
 
 ## Publications ##
 
-**socialize.blockedUsers** - Publishes blocked user records for the users that the current user blocks.
+**socialize.blockedUsers(options = { limit: 10, sort: { createdAt: -1 } })** - Publishes blocked user records for the users that the current user blocks.
+
+```javascript
+Meteor.subscribe('blockedUsers', { limit: 25 });
+```
