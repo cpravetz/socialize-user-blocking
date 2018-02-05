@@ -19,6 +19,13 @@ $ meteor install socialize:user-blocking
 ## Basic Usage ##
 
 ```javascript
+//create a blocking rule for a dating website that blocks members of unwanted genders
+User.registerBlockingHook(function(user){
+    if(currentUser.blockUnsoughtGenders && !currentUsers.gendersSought.includes(user.gender) > 10){
+        return true;
+    }
+});
+
 Meteor.users.findOne({username:'EvilUser'}).block();
 
 Meteor.users.findOne({username:'AlreadyBlockedUser'}).unblock();
@@ -26,13 +33,6 @@ Meteor.users.findOne({username:'AlreadyBlockedUser'}).unblock();
 const someUser = Meteor.users.findOne({username:'randomUser'});
 
 Meteor.user().blocksUser(someUser); // => false
-
-//create a blocking rule for a dating website that blocks members of unwanted genders
-User.registerBlockingHook(function(user){
-    if(currentUser.blockUnsoughtGenders && !currentUsers.gendersSought.includes(user.gender) > 10){
-        return true;
-    }
-});
 ```
 
 For a more in depth explanation of how to use this package see [API.md](API.md)

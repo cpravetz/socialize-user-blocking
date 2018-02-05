@@ -1,5 +1,5 @@
 ## User Extensions ##
-This package extends the [socialize:user-model](https://github.com/copleykj/socialize-user-model) package with properties and methods that apply the the user in the context of friends and friend requests.
+This package extends the [socialize:user-model](https://github.com/copleykj/socialize-user-model) package with properties and methods that apply to the user in the context of friends and friend requests.
 
 ### Instance Methods ###
 
@@ -34,9 +34,6 @@ Meter.user().blocks().fetch();
 Meteor.user().blockedBys().fetch();
 ```
 
-```javascript
-Meter.user().blocks().fetch();
-```
 **blocksUser(user)** - Check if one user blocks another. Check includes by \_id by default. Other blocking checks can be registered using `User.registerBlockingHook`.
 
 ```html
@@ -46,7 +43,7 @@ Meter.user().blocks().fetch();
 {{/if}}
 ```
 
-**blockedByUserIds(options)** - Get array of userId's for users that currently block the user. Signature of `options` param is the same as you would pass to `Collection.find()`.
+**blockedByUserIds(options)** - Get an array of userId's for users that currently block the user. Signature of `options` param is the same as you would pass to `Collection.find()`.
 
 ```javascript
 var ids = currentUser.blockedByUserIds();
@@ -80,7 +77,7 @@ return Meteor.users.find({_id:{$nin:ids}});
 
 ### Static Methods ###
 
-**User.registerBlockingHook(hookFunction)** - Register a function that when returns true signifies that a user is blocked. Hook function is passed a User instance to check against and the context is the calling user instance.
+**User.registerBlockingHook(hookFunction)** - Register a function that if returns true signifies that a user is blocked. Hook function is passed a User instance to check against and the context is the calling user instance.
 
 ```javascript
 //create a blocking rule that allows users to preemptively block others that may be a nuisance
