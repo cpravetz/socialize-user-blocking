@@ -73,7 +73,7 @@ const someUser = Meteor.users.findOne({username:'randomUser'});
 Meteor.user().blocksUser(someUser); // => false
 ```
 
-For a more in depth explanation of how to use this package see [API.md](API.md)
+For a more in depth explanation of how to use this package see [API.md](api)
 
 ## Scalability - Redis Oplog
 
@@ -82,3 +82,4 @@ This package implements [cultofcoders:redis-oplog][redis-oplog]'s namespaces to 
 [redis-oplog]:https://github.com/cultofcoders/redis-oplog
 [socialize]: https://atmospherejs.com/socialize
 [meteor]: https://meteor.com
+[api]: https://github.com/copleykj/socialize-user-blocking/blob/master/API.md
