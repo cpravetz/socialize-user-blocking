@@ -3,7 +3,7 @@ import { User } from 'meteor/socialize:user-model';
 import { Meteor } from 'meteor/meteor';
 /* eslint-enabled import/no-unresolved */
 
-import { BlocksCollection } from '../common/block-model';
+import { BlocksCollection } from '../common/common.js';
 
 // array to store functions that run when a user gets blocked
 const onHooks = [];
