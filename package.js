@@ -10,8 +10,8 @@ Package.onUse(function _(api) {
     api.versionsFrom('1.3');
     api.use([
         'check',
-        'reywood:publish-composite@1.5.2',
-        'socialize:user-model@1.0.0',
+        'reywood:publish-composite@1.6.0',
+        'socialize:user-model@1.0.2',
     ]);
     api.imply('socialize:user-model');
     api.mainModule('server/server.js', 'server');
