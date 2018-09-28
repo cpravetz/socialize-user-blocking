@@ -95,3 +95,9 @@ User.registerBlockingHook(function(user){
 ```javascript
 Meteor.subscribe('socialize.blockedUsers', { limit: 25 });
 ```
+
+**socialize.blocksUserById(lookupUserId)** - Subscribe to the relevant data to perform `user.blocksUserById(profileUserId)` on client.
+
+```javascript
+Meteor.subscribe('socialize.blocksUserById', profileUser._id);
+```

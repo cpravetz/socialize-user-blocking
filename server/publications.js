@@ -31,3 +31,27 @@ publishComposite('socialize.blockedUsers', function publishBlockedUsers(options 
         ],
     };
 });
+
+/**
+ * Publication to check if the current user is blocking the given user.
+ * @param lookupUserId {String}
+ */
+publishComposite('socialize.blocksUserById', function publishBlockedUsers(lookupUserId) {
+    check(lookupUserId, String);
+    if (!this.userId) {
+        return this.ready();
+    }
+
+    return {
+        find() {
+            return BlocksCollection.find({ userId: this._id, blockedUserId: lookupUserId }, { limit: 1 });
+        },
+        children: [
+            {
+                find(block) {
+                    return Meteor.users.find({ _id: block.blockedUserId }, { fields: User.fieldsToPublish });
+                }
+            }
+        ]
+    };
+});
