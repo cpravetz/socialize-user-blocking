@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { check, Match } from 'meteor/check';
 import { User } from 'meteor/socialize:user-model';
 import { publishComposite } from 'meteor/reywood:publish-composite';
+import { BlocksCollection } from '../common/common';
 
 const optionsArgumentCheck = {
     limit: Match.Optional(Number),
