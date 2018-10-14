@@ -1,6 +1,6 @@
 {
     "name": "@socialize/user-blocking",
-    "version": "1.0.2",
+    "version": "1.0.0",
     "description": "Meteor's socialize:user-blocking package ported for React Native",
     "main": "entry-rn.js",
     "scripts": {
