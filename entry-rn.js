@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import Meteor, { Mongo } from 'meteor/meteor';
+import Meteor, { Mongo } from '@socialize/react-native-meteor';
 import { User } from '@socialize/user-model';
 import { BaseModel } from '@socialize/base-model';
 import { ServerTime } from '@socialize/server-time';
