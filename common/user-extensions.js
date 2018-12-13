@@ -1,6 +1,4 @@
-import { Block, BlocksCollection } from './common.js';
-
-export default ({ Meteor, User }) => {
+export default ({ Meteor, User, Block, BlocksCollection }) => {
     // Array to store additional blocking check functions
     const blockHooks = [];
 
