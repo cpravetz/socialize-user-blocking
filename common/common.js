@@ -10,6 +10,6 @@ import extendUser from './user-extensions.js';
 import construct from './block-model.js';
 
 const { Block, BlocksCollection } = construct({ BaseModel, ServerTime, Mongo });
-extendUser({ Meteor, User });
+extendUser({ Meteor, User, Block, BlocksCollection });
 
 export { Block, BlocksCollection };
