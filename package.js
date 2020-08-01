@@ -1,7 +1,7 @@
 /* global Package*/
 Package.describe({
     name: 'socialize:user-blocking',
-    version: '1.0.2',
+    version: '1.0.3',
     summary: 'Allow users to block each other',
     git: 'https://github.com/copleykj/socialize-user-blocking.git',
 });
@@ -11,7 +11,7 @@ Package.onUse(function _(api) {
     api.use([
         'check',
         'reywood:publish-composite@1.7.3',
-        'socialize:user-model@1.0.2',
+        'socialize:user-model@1.0.3',
     ]);
     api.imply('socialize:user-model');
     api.mainModule('server/server.js', 'server');

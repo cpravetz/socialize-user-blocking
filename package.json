@@ -21,6 +21,6 @@
     },
     "homepage": "https://github.com/copleykj/socialize-user-blocking#readme",
     "dependencies": {
-        "@socialize/user-model": "^1.0.0"
+        "@socialize/user-model": "^1.0.3"
     }
 }
