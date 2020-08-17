@@ -1,11 +1,11 @@
 {
     "name": "@socialize/user-blocking",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Meteor's socialize:user-blocking package ported for React Native",
     "main": "entry-rn.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "publish": "meteor npm i && npm prune --production && meteor publish && meteor npm i",
+        "publish": "rimraf ./node_modules && meteor publish && meteor npm i --only=dev",
         "publish-release": "npm publish --access public"
     },
     "repository": {
@@ -24,7 +24,10 @@
     },
     "homepage": "https://github.com/copleykj/socialize-user-blocking#readme",
     "dependencies": {
-        "@socialize/user-model": "^1.0.3"
+        "@socialize/user-model": "^1.0.4"
+    },
+    "devDependencies": {
+      "rimraf":"^3.0.2"
     },
     "funding": [
         {
