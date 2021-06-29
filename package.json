@@ -24,7 +24,7 @@
     },
     "homepage": "https://github.com/copleykj/socialize-user-blocking#readme",
     "dependencies": {
-        "@socialize/user-model": "^1.0.4"
+        "@socialize/user-model": "^1.0.5"
     },
     "devDependencies": {
         "rimraf": "^3.0.2"
