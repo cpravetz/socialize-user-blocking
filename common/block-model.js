@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import SimpleSchema from 'simpl-schema';
+import SimpleSchema from 'meteor/aldeed:simple-schema';
 /* eslint-enable import/no-unresolved */
 
 export default ({ BaseModel, ServerTime, Mongo }) => {
@@ -16,7 +16,6 @@ export default ({ BaseModel, ServerTime, Mongo }) => {
     const BlockSchema = new SimpleSchema({
         userId: {
             type: String,
-            regEx: SimpleSchema.RegEx.Id,
             autoValue() {
                 if (this.isInsert) {
                     return this.userId;
@@ -28,7 +27,6 @@ export default ({ BaseModel, ServerTime, Mongo }) => {
         },
         blockedUserId: {
             type: String,
-            regEx: SimpleSchema.RegEx.Id,
             index: 1,
             denyUpdate: true,
         },
